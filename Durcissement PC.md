@@ -32,3 +32,21 @@ Désactiver le service finger et ident qui affiche des infos sur les utilisateur
 /etc/inetd.conf
 #finger stream tcp nowait root /usr/sbin/tcpd in.fingerd
 #ident stream tcp wait identd /usr/sbin/identd identd
+
+- sudo : /var/log/secure
+- SUID : find / -perm /6000 -ls
+- autorisations :
+    - /etc/passwd et /etc/groups rw-r--r--
+    - /etc/shadows et /etc/gshadows
+    - /etc/fstab rw-r--r--
+- mount
+    - /dev/sdb1 /home /tmp /var : defaults, nodev, noexec, nosuid
+    - /usr : defaults, nodev
+- réseau
+    - /etc/services
+    - iptables
+- supervision
+    - /var/logs
+    - boot : boot.log, kernel, dmesg, login, ftemp
+    - journalctl
+    - stat file.txt
